@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")();
+//const prompt = require("prompt-sync")();
 
 //OBJECTS
 /*
@@ -234,3 +234,105 @@ but properties of that object are free to change.
 The const person gives an error only if we try to set person=... as a whole */
 
 //CLONING AND MERGING, OBJECT.ASSIGN
+/*
+We can create a new object and replicate the structure of the existing one,
+by iterating over its properties and copying them on the primitive level.
+*/
+//example
+let student = {
+    name: "Jules",
+    age: 23,
+};
+
+let clone = {}; //the new empty object
+
+//copying all student properties into clone
+for (let key in student){
+    clone[key] = student[key];
+}
+//now clone is a fully independent object with  the same content
+clone.name = "Mallory";
+
+console.log(clone.name);
+console.log(student.name);
+
+/*
+We can also use the method object.assign.
+
+Syntax
+Object.assign(dest, ...sources)
+   -The first argument dest is a target object.
+   -Further arguments is a list of source objects.
+
+It copies the properties of all source objects into the target dest,
+and then returns it as a result.
+*/
+//Example
+let staff = {name: "Angel"};
+
+let permission1 = {canView: true};
+let permission2 = {canEdit: true}
+
+Object.assign(staff, permission1, permission2);
+
+console.log(staff);
+
+//If the copied name already exists, it gets overwritten;
+let teacher = {name: "Sylvie"};
+Object.assign(teacher,{name: "Horrace"});
+console.log(teacher.name);
+
+//We can also use Object.assign to perform a simple object cloning:
+let employee = {
+     name: "John",
+     age: 40
+};
+let copy = Object.assign({}, employee);
+console.log(copy);
+
+//NESTED CLONING
+//Properties can be references to other objects.
+//Example
+let parent = {
+   name: "Charles",
+   sizes:{
+      height: 182,
+      width: 50,
+   }
+};
+console.log(parent.sizes.width); //50
+
+/*
+Now it's not enough to copy dad.sizes = parent.sizes, because user.sizes is an object,
+and will be copied by reference, so dad and parent will share the same sizes:
+*/
+let dad = Object.assign({},parent);
+console.log(parent.sizes === dad.sizes); //true, same objects
+console.log(dad);
+
+//structuredClone
+//The call structuredClone(object) clones the object with all nested properties.
+//Example
+let human = {
+    name: "Natasha",
+    sizes: {
+        height: 182,
+        width: 50,
+    }
+};
+
+let being = structuredClone(human);
+console.log(human.sizes === being.sizes); //false, different objects
+
+console.log(being)
+
+/*
+The structuredClone method can clone most data types, such as objects, arrays, primitive values.
+It also supports circular references, when an object property references the object itself(directly or via a chain or references).
+*/
+//Example
+let user8 = {};
+user8.me = user;
+
+let clone1 = structuredClone(user8);
+console.log(clone1.me === clone);
