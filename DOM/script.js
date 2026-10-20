@@ -22,6 +22,9 @@ function updateDisplay() {
 //   else if(count<0){
 //     countElement.classList.add("negative");
 //   }
+
+    increaseButton.disabled = count >= 10;
+
 }
 
 //listen for clicks on the increase button
