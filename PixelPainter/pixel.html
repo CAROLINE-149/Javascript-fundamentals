@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pixel Painter</title>
+  <link rel="stylesheet" href="pixel.css">
+   <script src="pixel.js" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Pixel Painter</h1>
+
+    <div class="controls">
+      <input type="color" id="color-picker" value="#e63946">
+      <select id="grid-size">
+        <option value="8">8 x 8</option>
+        <option value="16" selected>16 x 16</option>
+        <option value="24">24 x 24</option>
+      </select>
+      <button id="clear-btn">Clear</button>
+    </div>
+
+    <div id="grid"></div>
+  </main>
+ 
+</body>
+</html>

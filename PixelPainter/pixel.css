@@ -1,0 +1,160 @@
+/* General reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Page styling */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+/* Main workspace */
+main {
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+  text-align: center;
+}
+
+/* App heading */
+h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 28px;
+  letter-spacing: -1px;
+}
+
+/* Controls container */
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+/* Color picker */
+#color-picker {
+  width: 52px;
+  height: 44px;
+  padding: 4px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/* Grid size dropdown */
+#grid-size {
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #334155;
+  font-size: 0.95rem;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#grid-size:focus,
+#color-picker:focus-visible {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+/* Clear button */
+#clear-btn {
+  height: 44px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 10px;
+  background: #e63946;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+#clear-btn:hover {
+  background: #c92535;
+  transform: translateY(-2px);
+}
+
+#clear-btn:active {
+  transform: translateY(0);
+}
+
+/* Pixel grid */
+#grid {
+  display: grid;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+}
+
+/* Individual pixels — assumes JavaScript creates .pixel elements */
+.cell {
+  background: #ffffff;
+  border: 1px solid #edf0f5;
+  cursor: crosshair;
+  transition: background-color 0.1s;
+}
+
+.cell:hover {
+  border-color: #cbd5e1;
+}
+
+/* Responsive layout */
+@media (max-width: 480px) {
+  body {
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  main {
+    padding: 22px 14px;
+    border-radius: 14px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 22px;
+  }
+
+  .controls {
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  #grid-size {
+    padding: 0 8px;
+    font-size: 0.85rem;
+  }
+
+  #clear-btn {
+    padding: 0 14px;
+  }
+}
