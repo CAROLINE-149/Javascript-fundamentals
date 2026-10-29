@@ -1,24 +1,41 @@
 const colorPicker = document.querySelector("#color-picker");
 const gridSize = document.querySelector("#grid-size");
 const clearButton = document.querySelector("#clear-btn");
-const Grid = document.querySelector("#grid");
+const grid = document.querySelector("#grid");
 
-//Creating the 16*16 grid
-const rows = 16;
-const columns = 16;
-const totalCells = rows*columns;
+let isDrawing = false;
 
-//loop to create the cells
-for(let i = 1; i<=totalCells; i++){
+//function to create grid
+function createGrid(size) {
+  grid.innerHTML = "";
+  grid.style.gridTemplateColumns = "repeat(" + size + ", 1fr)";
 
-    //create a new element div
-   const cell = document.createElement("div");
+  for (let i = 0; i < size * size; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+    grid.appendChild(cell);
+  };
+};
 
-   //add a class to it
-   cell.classList.add("cell");
+gridSize.addEventListener("change", function () {
+  const size = Number(gridSize.value);
+  createGrid(size);
+});
 
-   //display the content
-   cell.textContent = i;
+//clicking a cell to add color to it
+grid.addEventListener("click", function (event) {
+  if (event.target.classList.contains("cell")) {
+    event.target.style.backgroundColor = colorPicker.value;
+  }
+});
 
-   Grid.appendChild(cell);
-}
+
+grid.addEventListener("mousedown",function(event){
+    isDrawing = true;
+    console.log(`Drawing is ${isDrawing}`)
+});
+
+grid.addEventListener("mouseUp", function(event){
+    isDrawing = false;
+    console.log(`Drawing is ${isDrawing}`)
+});

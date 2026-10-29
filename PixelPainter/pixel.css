@@ -113,6 +113,7 @@ h1 {
   overflow: hidden;
   background: #ffffff;
   box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05);
+  
 }
 
 /* Individual pixels — assumes JavaScript creates .pixel elements */
